@@ -66,7 +66,8 @@ module OmniAuth
                          verify_aud: true,
                          aud: [options.client_id].concat(options.authorized_client_ids),
                          algorithms: ['RS256'],
-                         jwks: fetch_jwks
+                         jwks: fetch_jwks,
+                         leeway: options.leeway || 0
                        }
                        payload, _header = ::JWT.decode(id_token, nil, true, jwt_options)
                        verify_nonce!(payload)
